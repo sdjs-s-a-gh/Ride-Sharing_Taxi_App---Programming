@@ -1,0 +1,15 @@
+{% extends 'rest_of_app_base.html' %}
+
+{% block header %}
+  <h1>{% block title %}UI Colours: Background Colour{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+        <ul>
+            <li><label for="colour_choice">Colour Picker</label>
+                <input type="color" id="colour_choice" name="colour_choice" value="{{ db_colour }}">
+        </ul>
+          <button type="submit">Save</button>
+  </form>
+{% endblock %}

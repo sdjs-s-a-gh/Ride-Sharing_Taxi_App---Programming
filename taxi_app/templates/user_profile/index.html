@@ -1,0 +1,16 @@
+{% extends 'rest_of_app_base.html' %}
+
+{% block header %}
+  <h1>{% block title %}User Profile: {{ username }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <ul>
+        <li><a href="{{ url_for('user_profile.manage_account') }}"><button type="button">Manage Account</button></a>
+        <li><a href="{{ url_for('user_profile.view_booking_history') }}"><button type="button">View Booking History</button></a>
+        <li><a href="{{ url_for('settings.index') }}"><button type="button">More Settings</button></a>
+        <li><a href="{{ url_for('user_profile.reviews') }}"><button type="button">Reviews</button></a>
+    </ul>
+  </form>
+{% endblock %}

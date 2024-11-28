@@ -1,0 +1,81 @@
+{% extends 'rest_of_app_base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Destination{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<title>Destination</title>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB9YhWM4Ep4iDKLTJSOHPcAS2fdiAf4tac&callback=initAutocomplete&types=address" async defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+  function validate_input() {
+    var address = document.getElementById('address').value.trim();
+    var postcode = document.getElementById('postcode').value.trim();
+
+    if (!address || !postcode) {
+      alert('Both address and postcode are required.');
+      return false;
+    }
+
+    var full_address = address + ', ' + postcode;
+    var geocoder = new google.maps.Geocoder();
+
+    // Geocoding for both address and postcode (converting addresses into coordinates)
+    // there are multiple ifs as users could enter two valid addresses and postcodes but may not be valid together
+    // like entering a London postcode with an address in the USA, for instance
+    geocoder.geocode({'address': address}, function(results, status) {
+      if (status === 'OK') {
+        geocoder.geocode({'address': postcode}, function(results, status) {
+          if (status === 'OK')  {
+            geocoder.geocode({'address': full_address}, function(results, status) {
+              if (status === 'OK') {
+                alert('Address is valid: ' + results[0].formatted_address +
+                    '. Please proceed back to the previous page (Book a Ride)');
+
+                var coordinates = results[0].geometry.location.lat() + ',' + results[0].geometry.location.lng();
+                console.log(coordinates)
+                // pass the coordinates back to server-side (python), so I can use it later
+                $.ajax({
+                  type: 'POST',
+                  url: '/book_a_ride/destination',
+                  contentType: 'application/json',
+                  data: JSON.stringify({
+                      full_address: full_address,
+                      coordinates: coordinates,
+                    })
+                })
+                  return true
+                  document.getElementById('collection_form').submit();
+
+
+              } else {
+                alert(status);
+              }
+            });
+          } else {
+            alert(status);
+          }
+        });
+      } else {
+        alert(status);
+      }
+    });
+
+    return false; // form cannot be submitted until validation is complete
+  }
+</script>
+
+<form method="post" id="collection_form" onsubmit="return validate_input()">
+    <p>I am not familiar (or any good) with javascript.
+        So, once you press 'Confirm' with a valid address, please press the second button at the bottom to return to the
+        prior screen.</p>
+  <ul>
+      <li><label for="address">Address</label>
+          <input id="address" name="address">
+      <li><label for="postcode">Postcode</label>
+          <input id="postcode" name="postcode">
+  </ul>
+    <a href="{{ url_for('book_a_ride.index') }}"><button type="submit">Confirm</button></a>
+</form>
+{% endblock %}

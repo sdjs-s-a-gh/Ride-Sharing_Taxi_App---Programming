@@ -1,0 +1,19 @@
+{% extends 'rest_of_app_base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Manage Account{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <ul>
+        <li><label for="change_username">Change Username</label>
+            <input id="change_username" name="new_username">
+        <li><label for="change_password">Change Password</label>
+            <input type="password" id="change_password" name="new_password">
+        <li><label for="change_email">Change Email</label>
+            <input type="email" id="change_email" name="new_email">
+    </ul>
+      <button type="submit">Confirm</button>
+  </form>
+{% endblock %}

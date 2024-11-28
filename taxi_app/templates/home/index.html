@@ -1,0 +1,11 @@
+<!doctype html>
+<title></title>
+<nav>
+  <h1>Taxi App</h1>
+  <ul>
+    <li><a href="{{ url_for ('auth.register')}}"><button type="button">Create Account</button></a>
+    <li><a href="{{ url_for ('auth.login')}}"><button type="button">Sign In</button></a>
+    <li><a href="{{ url_for ('auth.guest_login')}}"><button type="button">Guest Account</button></a>
+  </ul>
+</nav>
+<p> The Guest account is a temporary account and thus will not save account-bound changes.</p>

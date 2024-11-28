@@ -1,0 +1,54 @@
+{% extends 'rest_of_app_base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Current Ride{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<title>Current Ride</title>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9YhWM4Ep4iDKLTJSOHPcAS2fdiAf4tac&callback=initMap" async defer></script>
+<script>
+  function init_map() {
+    // Get the collection point and destination coordinates
+    var collection_point = {{ collection_coordinates | tojson | safe }};
+    var destination = {{ destination_coordinates | tojson | safe }};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 13,
+      center: {lat: collection_point.latitude, lng: collection_point.longitude}
+    });
+
+    var directions_service = new google.maps.DirectionsService();
+    var directions_renderer = new google.maps.DirectionsRenderer();
+    directions_renderer.setMap(map);
+
+    console.log(collection_point)
+    console.log(destination)
+
+    if (collection_point && destination) {
+      var request = {
+        origin: new google.maps.LatLng(collection_point.latitude, collection_point.longitude),
+        destination: new google.maps.LatLng(destination.latitude, destination.longitude),
+        travelMode: 'DRIVING'
+      };
+
+      directions_service.route(request, function(result, status) {
+        if (status == 'OK') {
+          directions_renderer.setDirections(result);
+          var distance = result.routes[0].legs[0].distance.text;
+          document.getElementById('distance').innerHTML = `<p>Distance: ${distance}</p>`;
+        } else {
+          alert('Directions request failed due to ' + status);
+        }
+      });
+    } else {
+      alert('Collection point or destination coordinates are missing.');
+    }
+  }
+</script>
+<body onload="init_map()">
+  <div id="map" style="height: 300px; width: 100%;"></div>
+  <div id="distance"></div>
+  <li><a href="{{ url_for('book_a_ride.end_of_ride') }}"><button type="button">End Ride</button></a>
+</body>
+{% endblock %}

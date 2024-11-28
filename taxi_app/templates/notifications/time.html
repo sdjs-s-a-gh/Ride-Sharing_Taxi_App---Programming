@@ -1,0 +1,26 @@
+{% extends 'rest_of_app_base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Notifications: Time{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+      <h1> Every: </h1>
+    <ul>
+        <li><label for="one_minute">1 Minute</label>
+            <input type="radio" id="one_minute" name="time" value="one_minute"
+                    {% if minute == 1 %}checked{% endif %}>
+        <li><label for="two_minutes">2 Minutes</label>
+            <input type="radio" id="two_minutes" name="time" value="two_minutes"
+                    {% if minute == 2 %}checked{% endif %}>
+        <li><label for="three_minutes">3 Minutes</label>
+            <input type="radio" id="three_minutes" name="time" value="three_minutes"
+                    {% if minute == 3 %}checked{% endif %}>
+        <li><label for="five_minutes">5 Minutes</label>
+            <input type="radio" id="five_minutes" name="time" value="five_minutes"
+                    {% if minute == 5 %}checked{% endif %}>
+    </ul>
+      <button type="submit">Save</button>
+  </form>
+{% endblock %}

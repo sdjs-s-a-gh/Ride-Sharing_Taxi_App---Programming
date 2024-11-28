@@ -1,0 +1,31 @@
+{% extends 'rest_of_app_base.html' %}
+
+{% block header %}
+  <h1>{% block title %}End of Ride{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<title>End of Ride</title>
+<form method="post">
+    <label for="combo">Rate Driver:</label><br>
+    <select id="combo" name="combo">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+
+    <h2>Review</h2>
+    <label for="title">Title</label><br>
+    <input id="title" name="title" type="text" required>
+    <br>
+
+    <label for="body">Body: Write your Review below</label>
+    <br>
+    <textarea id="body" name="body" rows="4" cols="50" required></textarea>
+
+    <br>
+    <a href="{{ url_for('home.index') }}"><button type="submit">Submit Review</button></a>
+</form>
+{% endblock %}

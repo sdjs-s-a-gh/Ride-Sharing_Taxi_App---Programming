@@ -1,0 +1,27 @@
+{% extends 'rest_of_app_base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Notifications{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <ul>
+        <li><label for="push_notifications">Push Notifications</label>
+            <input type="checkbox" id="push_notifications" name="push_notifications"
+                    {% if notif %}checked{% endif %}>
+        <li><label for="driver_updates">En-route Driver Updates</label>
+            <input type="checkbox" id="driver_updates" name="driver_updates"
+                    {% if enr %}checked{% endif %}>
+        <li><a href="{{ url_for('notifications.distance') }}"><button type="button">Distance</button></a>
+        <li><a href="{{ url_for('notifications.time') }}"><button type="button">Time</button></a>
+        <li><label for="special_offers">Special Offers</label>
+            <input type="checkbox" id="special_offers" name="special_offers"
+                    {% if spo %}checked{% endif %}>
+        <li><label for="booking_receipts">Booking Receipts</label>
+            <input type="checkbox" id="booking_receipts" name="booking_receipts"
+                    {% if bkr %}checked{% endif %}>
+    </ul>
+      <button type="submit">Save</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'rest_of_app_base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Settings{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <ul>
+        <li><label for="nightmode">Nightmode</label>
+            <input type="checkbox" id="nightmode" name="nightmode"
+                    {% if nm %}checked{% endif %}>
+        <li><label for="text_to_speech">Text-to-Speech</label>
+            <input type="checkbox" id="text_to_speech" name="text_to_speech"
+                    {% if tts %}checked{% endif %}>
+        <li><a href="{{ url_for('settings.change_ui_colours') }}"><button type="button">Change UI Colours</button></a>
+    </ul>
+      <button type="submit">Save</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'rest_of_app_base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Map{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<title>Drivers on Map</title>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9YhWM4Ep4iDKLTJSOHPcAS2fdiAf4tac&callback=initMap" async defer></script>
+<script>
+  function init_map() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 13,
+      center: {lat: 54.906101, lng: -1.381130} // all the drivers are here, saves moving the map around
+    });
+
+    // despite there being 'errors' in the jinja, nothing is actually wrong
+    var drivers = {{ driver_list | tojson | safe }};
+
+    drivers.forEach(driver => {console.log('current driver:', driver);
+      var marker = new google.maps.Marker({
+        position: {lat: driver.latitude, lng: driver.longitude},
+        map: map,
+        title: driver.firstname + ' ' + driver.surname
+      });
+      console.log('marker:', marker);
+      var infowindow = new google.maps.InfoWindow({
+        content: `<h2>${driver.firstname} ${driver.surname}</h2>
+        <p>${driver.car_manufacturer} ${driver.car_model}</p>`
+      });
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+    });
+  }
+</script>
+
+<body onload="init_map()">
+  <div id="map" style="height: 600px; width: 100%;"></div>
+  <div id="distance"></div>
+</body>
+{% endblock %}

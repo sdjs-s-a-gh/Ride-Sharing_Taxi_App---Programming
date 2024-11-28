@@ -1,0 +1,36 @@
+{% extends 'rest_of_app_base.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{ driver['firstname'] + " " + driver['surname'] }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <nav>
+      <ul>
+        <li><a href=" {{ url_for('driver.display_drivers') }} "><button type="button">View on Map</button></a>
+        <li><a href="{{ url_for('book_a_ride.index', driver_id=driver['driver_id']) }}"><button type="button">Book a Ride</button></a>
+      </ul>
+    </nav>
+    <div>
+        <p> Car: {{ driver['car_manufacturer'] + " " + driver['car_model'] }}</p>
+        <p> Rides Completed: {{ driver['rides_completed'] }}</p>
+        <p> Average Score: {{ driver['average_rating'] }}</p>
+    </div>
+    <div>
+        <h1> Reviews</h1>
+        {% if reviews %}
+        <ul>
+        {% for review in reviews %}
+            <li>
+                <h3>{{ review[dict['username']] }}:</h3>
+                <h4>{{ review[dict['title']] }}: {{ review[dict['rating']] }} / 5</h4>
+                <p>{{ review[dict['body']] }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+        {% else %}
+        <p>There are no reviews for this Driver.</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

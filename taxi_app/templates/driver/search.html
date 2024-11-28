@@ -1,0 +1,42 @@
+{% extends 'rest_of_app_base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Search{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+  {% if drivers %}
+    <label for="combo">Sort By:</label><br>
+      <select id="combo" name="combo">
+        <option value="distance">Distance</option>
+        <option value="rating">Rating</option>
+       </select>
+      <input type="submit" value="Submit">
+      <table>
+        <thead>
+          <tr>
+            <th>Driver</th>
+            <th>Average Rating</th>
+            <th>Distance</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in drivers %}
+            <tr>
+              <td>{{ row[dict['firstname']] + " " + row[dict['surname']] }}</td>
+              <td>{{ row[dict['average_rating']] }}</td>
+              <td>{{ row[dict['distance']] }}</td>
+              <td><a href="{{ url_for('driver.driver_profile', driver_id=row[dict['driver_id']]) }}">View Profile</a></td>
+              <td><a href="{{ url_for('book_a_ride.index', driver_id=row[dict['driver_id']]) }}">
+                <button type="button">Book Driver</button></a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>There are no drivers.</p>
+    {% endif %}
+  </form>
+{% endblock %}

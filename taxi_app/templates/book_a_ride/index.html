@@ -1,0 +1,30 @@
+{% extends 'rest_of_app_base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Book a Ride{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">'
+      <div>
+          {% if name %}
+            <p> Driver: {{ name }}</p>
+          {% else %}
+            <li><a href="{{ url_for('driver.driver_search') }}"><button type="button">Select Driver</button></a></li>
+          {% endif %}
+          {% if full_address %}
+            <p> Collection Point: {{ full_address }}</p>
+          {% else %}
+            <li><a href="{{ url_for('book_a_ride.collection_point') }}"><button type="button">Collection Point</button></a>
+          {% endif %}
+          {% if destination_add %}
+                <p> Destination: {{ destination_add }}</p>
+          {% else %}
+            <li><a href="{{ url_for('book_a_ride.destination') }}"><button type="button">Destination</button></a>
+          {% endif %}
+      </div>
+      <br>
+      <li><button type="submit" name="submit" value="submit">Submit</button>
+      <li><button type="submit" name="submit" value="clear">Clear</button>
+  </form>
+{% endblock %}

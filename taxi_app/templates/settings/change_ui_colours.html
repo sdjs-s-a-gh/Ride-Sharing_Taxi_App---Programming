@@ -1,0 +1,15 @@
+{% extends 'rest_of_app_base.html' %}
+
+{% block header %}
+  <h1>{% block title %}UI Colours{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <ul>
+        <li><a href="{{ url_for('settings.text_colour_one') }}"><button type="button">Text Colour 1</button></a>
+        <li><a href="{{ url_for('settings.text_colour_two') }}"><button type="button">Text Colour 2</button></a>
+        <li><a href="{{ url_for('settings.background_colour') }}"><button type="button">Background Colour</button></a>
+    </ul>
+  </form>
+{% endblock %}

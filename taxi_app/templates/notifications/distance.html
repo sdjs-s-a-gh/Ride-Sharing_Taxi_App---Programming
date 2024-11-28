@@ -1,0 +1,23 @@
+{% extends 'rest_of_app_base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Notifications: Distance{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+      <h1> Every: </h1>
+    <ul>
+        <li><label for="one_mile">1 Mile</label>
+            <input type="radio" id="one_mile" name="distance" value="one_mile"
+                    {% if distance == 1 %}checked{% endif %}>
+        <li><label for="two_miles">2 Miles</label>
+            <input type="radio" id="two_miles" name="distance" value="two_miles"
+                    {% if distance == 2 %}checked{% endif %}>
+        <li><label for="three_miles">3 Miles</label>
+            <input type="radio" id="three_miles" name="distance" value="three_miles"
+                    {% if distance == 3 %}checked{% endif %}>
+    </ul>
+      <button type="submit">Save</button>
+  </form>
+{% endblock %}

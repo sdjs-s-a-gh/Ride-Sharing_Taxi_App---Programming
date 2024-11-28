@@ -1,0 +1,32 @@
+{% extends 'rest_of_app_base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Booking History{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+{% if booking_history %}
+    <table>
+      <thead>
+        <tr>
+          <th>Driver ID</th>
+          <th>Driver Name</th>
+          <th>Date</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in booking_history %}
+          <tr>
+            <td>{{ row[dict['driver_id']] }}</td>
+            <td>{{ row[dict['firstname']] + " " + row[dict['surname']] }}</td>
+            <td>{{ row[dict['date']] }}</td>
+            <td>{{ row[dict['rating']] }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>There is no booking history.</p>
+  {% endif %}
+{% endblock %}

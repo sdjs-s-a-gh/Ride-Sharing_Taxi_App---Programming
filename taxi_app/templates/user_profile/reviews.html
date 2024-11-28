@@ -1,0 +1,22 @@
+{% extends 'rest_of_app_base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Reviews{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    {% if reviews %}
+         <ul>
+        {% for review in reviews %}
+            <li>
+                <h3> Driver: {{ review[dict['firstname']] + " " +  review[dict['surname']] }}</h3>
+                <h4>{{ review[dict['title']] }}: {{ review[dict['rating']] }} / 5</h4>
+                <p>{{ review[dict['body']] }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have not made any reviews yet.</p>
+    {% endif %}
+
+{% endblock %}
