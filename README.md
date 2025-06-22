@@ -1,1 +1,14 @@
-A taxi app website created using Flask. Allowing one to select their own driver, users can book a journey from a specified location to a destination using the Google Maps API. Each driver has their own unique profile, detailing their name, aggregated review score and reviews. Users can review a driver wherein they can rate them on a scale of one to five. The user can also change a plethora of details pertaining to their account: primary and secondary colours of the website ; their username and password; other settings-related preferences 
+## Description
+A full-stack web application using the Flask framework in Python – supporting user registration, driver profiles and ride creation. 
+Features responsive UI using HTML, Jinja and the Google Maps API to display real-time geolocation visualisations of user-generated ride routes. 
+•	Wrote SQL queries to access and manipulate data from a local SQLite database, enabling user and driver information, settings, commenting and ride ratings to be managed
+
+## Features
+Users can
++ Select their own driver
++ Book a journey from a specified location to a destination using the Google Maps API
++ Review a driver by raing them on a scale of one to five, anc can also leaving a comment
++ Alter account details, including
+  + username and password
+  + primary and secondary colours of the website
+  + notification preferences
