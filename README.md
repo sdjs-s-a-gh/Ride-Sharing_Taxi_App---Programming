@@ -1,5 +1,5 @@
 ## Description
-A full-stack web application using the Flask framework in Python – supporting user registration, driver profiles and ride creation. 
+A full-stack web application developed using the Flask framework in Python – supporting user registration, driver profiles and ride creation. 
 Features responsive UI using HTML, Jinja and the Google Maps API to display real-time geolocation visualisations of user-generated ride routes. 
 •	Wrote SQL queries to access and manipulate data from a local SQLite database, enabling user and driver information, settings, commenting and ride ratings to be managed
 
