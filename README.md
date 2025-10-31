@@ -9,7 +9,7 @@ This application was made as coursework for the Programming module that ran from
 Users may:
 + Select a driver
 + Book a journey from a specified location to a destination using the Google Maps API
-+ Review a driver by raing them on a scale of one to five, anc can also leaving a comment
++ Review a driver by rating them on a scale of one to five, and can also leaving a comment
 + Alter account details, including
   + username and password
   + primary and secondary colours of the website
