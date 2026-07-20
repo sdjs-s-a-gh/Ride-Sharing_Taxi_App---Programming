@@ -12,10 +12,10 @@ This project was made as coursework for the "Programming" module that ran from F
 
 ---
 ## Key Features
-1. Driver Discovery: Users may browse a registry of current drivers either in a menu format, view their profile and past reviews, see real-time locations on a map and book journeys.
-2. Ride Lifecycle: Users can book journeys from a specific collection point to destination, receive a predicted price, visualise the route and complete the ride.
-3. Reviews: Once a journey has been completed, users can rate the driver on a scale from 1 to 5 with an accompanied, but optional, textual review. These reviews are appended to a driver's profile and can be viewed by other users.
-4. Personalisation: The application offers a plethora of customisation offers that users may utilise, including user interface colour schemes, notification preferences and account information like usernames and emails.
+1. __Driver Discovery__: Users may browse a registry of current drivers either in a menu format, view their profile and past reviews, see real-time locations on a map and book journeys.
+2. __Ride Lifecycle__: Users can book journeys from a specific collection point to destination, receive a predicted price, visualise the route and complete the ride.
+3. __Reviews__: Once a journey has been completed, users can rate the driver on a scale from 1 to 5 with an accompanied, but optional, textual review. These reviews are appended to a driver's profile and can be viewed by other users.
+4. __Personalisation__: The application offers a plethora of customisation offers that users may utilise, including user interface colour schemes, notification preferences and account information like usernames and emails.
 
 ---
 ## Technology Stack
