@@ -8,7 +8,7 @@ The Taxi application offers functionality for users to view the real-time locati
 
 ---
 ## Background
-This project was made as coursework for the "Programming" module that ran from February to May 2024. The code was last updated at 23th May 2024 at 3:27PM.
+This project was made as coursework for the "Programming" module that ran from February to May 2024. The code was last updated on the 23rd May 2024 at 3:27PM.
 
 ---
 ## Key Features
